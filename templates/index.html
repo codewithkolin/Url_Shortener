@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>URL Shortener</h1>
+    <form method="POST" action="/">
+        <input type="text" name="url" placeholder="Enter your URL here" required>
+        <button type="submit">Shorten</button>
+    </form>
+    
+    {% if short_url %}
+        <p>Shortened URL: <a href="{{ short_url }}" target="_blank">{{ short_url }}</a></p>
+    {% endif %}
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="error">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+{% endblock %}
